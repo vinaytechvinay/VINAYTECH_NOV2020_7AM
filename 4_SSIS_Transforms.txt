@@ -1,0 +1,523 @@
+
+
+=========================================================================================
+Source and Target Assistant
+=========================================================================================
+What is source and target assistant, and how is it helpful in real-time?
+
+These help to construct source and target quickly from the existing connection managers.
+
+Practice:
+
+a) Create a connection manager [required connection managers]
+
+b) Drag and drop source / destination assistant on the control flow surface, choose the connection manager required for you.
+
+
+
+=========================================================================================
+Multiple Transformations Example Explanation [Single Source Transforms]  : PDF 4 
+
+
+Muticast, Derived Column, Sort, Aggregate, Data Coversion, Conditional Split, Character Map, Term Extraction, Row Count, Audit,
+Import Column,Export Column etc.
+=========================================================================================
+
+Here I will get a file input--> Multi Cast( Multiple copies)--> Multiple Transforms--> Multiple Targets
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MultiCast: 
+	Create multiple copies of input.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sort:
+	a) Sorts data in ASC / DESC b) Multi column sorting c) Remove duplicates
+
+	Ex: Locations in descending order, with in the locations names in ascending order and also eliminate duplicate rows.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Audit:
+
+	Adding auditing fields (columns) to each row.
+	Ex: Package name, username, machine name etc...
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Data Conversion:
+	
+	Converting one type to another type
+
+	There are three ways to covert data types
+
+	a) Using Expression  [Ex: (DT_I4) Income,  (DT_wstr,10) Partyname]
+
+	b) Data Conversion Transformation
+
+	c) Directly doing at source / target [Advanced Tab / Advanced Editor]
+
+Flat File Columns Default Data Types:  String data types (Dt_Str)
+
+Excel Columns Default Data Types:  Wide String data types (Dt_WStr)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Aggregate Transform:
+
+		a) Perform aggregate operations [Total 7 operations: sum, avg, max, min, count, countdistinct, group]
+		b) If the column is Numeric, system support all operations
+		c) If the column is String, system support Count, Count Distinct, Group by operations
+		d) If the column is Date, system support 5 operations [Max, Min, Count, CountDistinct, Group etc.]
+
+	Real-Time usage:
+
+	a) Create categories and perform aggregations
+	b) Finding duplicates and splitting
+	
+	Ex: Locationwise sum, avg of incomes and also getting count of studentids
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Percentage Sampling: Getting Sample Percentage Number of Records
+
+	Ex: Getting 90% records from the input
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Row Sampling: Getting Sample Number of Records
+
+	Ex: Getting 8 records from the input
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Term Extraction:
+		It works on wide string / ntext columns to findout text and number of occurances.
+
+		Note: You can also skip the terms which you don't want to get output even they repeated
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Coditional Split Transform:
+
+		Split the data based on condition.
+
+		It has two types of output
+
+		a) Condition matched data
+		b) Condition unmatched data
+
+		Ex: 
+		a) Move hyd location and income more than 10000 into one destination [condition]
+		b) Move che location and income more than 20000 into another destination [condition]
+		c) Remaining data into another destination [condition unmatched]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Character Map Transform
+
+		Perform character translations
+		Ex: Upper, Lower, Kanatype change etc.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Derived Column Transformation
+
+		Derived new columns from the existng columns.
+		Maximum business calculations implemented in this transform
+	
+		Ex: 
+		a) Incrementing income by 10 percent
+		b) Concatenating user name and package name of system information
+		c) Getting a portion of string
+		d) Taking a path for a file
+		e) Adding Dates
+		e) Finding diff between dates
+		f) NULL handling
+		etc...
+Note: This is close to Expression Transform in Informatica
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Copy column Transform:
+
+		Create column copies, so that we can use the copy for the required operations.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+When do we go for Transform and Expression? Give me the best transform where maximum operations possible?
+
+a)If there is no expression area, then we go for Transform. 
+
+b) Derived column transform can perform the below functionsalities [ so prefer to do at dervied column instead of transforms]
+
+		Use Derived column String functions instead of Character Map transform
+		Use Derived column Type case functions instead of Data Conversion transform
+		Use Derived column System variables instead of Audit transform
+		Use Drived column if you want multiple copies
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Copy column Transform:
+
+		Create column copies, so that we can use the copy for the required operations.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pivot Transform:
+
+		Pivot means conversion / change.
+		Pivot transform perform  
+
+		a) Row to column conversion
+		b) Denormalized to normalized conversion
+
+		Real-time usage:
+		
+		Reducing number of records and performing aggregate operations
+
+		To work with this transform, three properties need to identify
+		a) Set key [ no position change column]
+		b) Pivot column [ whose values change from row to column]
+		c) Pivot value [values pivoted]
+
+
+Unpivot Transform:
+		UPivot transform perform  
+
+		a) Column to Row conversion
+		b) Normlized to Denormalized conversion
+
+		Real-time usage:
+		
+		a) Mainframe or cobol files handling [because they are in normalized format, to maintain historical format unpivot 			required]
+		b) To maintain individual rows with components / changes
+	
+Export Column Transform:
+
+		Export column values to a folder
+
+		Ex:
+
+		Images exporting from a column to a folder
+		
+		Archived text / pdf / word files exporting to a folder
+
+
+Import Column Transform:
+
+		Import folder [files / images etc...] of content into a table column [image / binary]
+		
+		Ex: 
+		Importing set of images to a column in a table
+		Importing set of files to a column in a table
+
+		Practical:
+		a) There is no direct source to load, so take all paths in a file and process
+		b) Mention in the Import column transform that each path is an image / file.
+
+=======================================================================================
+Multi Souce Transforms  [Union ALL, Merge, Merge Join, Lookup, Fuzzy Lookup etc.] : PDF 5 
+=======================================================================================
+
+	Set theory implementation in SSIS:  a) Union ALL  b)Merge
+
+Note: Input structure should match [number of columns and order of data types should match,it will not bother about column names]
+
+Union ALL:
+
+	a) Take multiple input sources [ same structure]
+	b) Output data appended [ one source appended to another source]
+
+
+Merge:
+	Take two sorted inputs and provide sorted output.
+	
+	Practical:
+
+	Scenario 1: Inputs Not Sorted
+	
+	Inputs--> Sort Transform--> Merge--> Output
+
+	Scenario 2: Inputs Sorted
+
+	Inputs--> (mention two features to tell sources sorted and on a column)--> Merge-->Output
+
+What is sort key position?
+	
+	Inticate the sorting level.
+
+	0-->No sorting  1--> 1st column sorting	 2--> second column sorting
+	
+	Ex:
+
+	Countries liste sorted (sort key : 1), with in country states sorted (sory key : 2), with in state districts sorted (sort key: 3)
+
+
+How many merges / merge joins required to merge 4 sources?
+
+N-1, for four sources 3 merges / merge joins required
+
+=============================
+Join operation in SSIS  [Merge Join / Lookup ]
+==============================
+Merge Join:
+
+		Merge (sorted inputs)+ Join (inner join, left join, full join)
+
+		Note: There is no direct right join, if we swap and perform left join, then it is right join operation.
+
+
+
+OLEDB Command Transform:
+
+		It performs SQL operation for each input record.
+		Ex:
+		Performing update operation for each input record
+		Performing delete operation for each input record
+
+New record Identification: IN SQL / SSIS / Any ETL tool
+
+		Left Join + Where Clause Right Columns IS NULL
+
+Existing Record Identification:   IN SQL / SSIS / Any ETL tool
+
+
+		Left Join + (left and right a particular column match found)
+
+
+New Record Loading + Old record updating
+==============================
+Incremental Loading --> Slowly Changing Dimension Loading--> No Hist Loasing [ Type 1]
+
+
+=============================
+LOOKUP TRANSFORM
+=============================
+What is the operation of lookup?
+
+Lookup performs exact match based on condition and returns required columns.
+-------------------------------------------------------------------------------------------------------
+Where do we use in Real time?
+a)	Record availability
+b)	Duplicates finding
+c)	Incremental loading
+d)	SCD loading
+e)	CDC implementation
+f)	Quick inner join operation for frequent joins
+-------------------------------------------------------------------------------------------------------
+Incase No match what kind of options available  in lookup?
+
+In case of no match there are four options
+
+a)Fail component --Fails the component and stops the package execution
+b)Ignore failure—Ignores failure and loads the record [appears like left join]
+c)No match output—consider and move into no match destination
+d)Error output—consider and move into error destination
+-------------------------------------------------------------------------------------------------------
+If multiple matches found, what will it return?
+
+Always returns first match
+-------------------------------------------------------------------------------------------------------
+What are the objects Lookup support?
+
+Lookup object should be a relational table / cache file (.caw).
+-------------------------------------------------------------------------------------------------------
+What is cache and how is it helpful?
+
+Cache is a pre-stored file data which is used for faster comparisons and operations.
+
+-------------------------------------------------------------------------------------------------------
+
+No Cache: 
+		Situation: If the lookup / join table frequently changing
+		Drawbacks: More traffic / burden on the join / lookup table
+Full cache:
+
+		Situation: If the lookup / join table not changing
+		Drawbacks: Less traffic / Less brunden  on the join / lookup table
+
+Partial Cache:
+
+		Situation: If the lookup / join table frequently changing sometimes
+		Drawbacks: Avg traffic / burden on the join / lookup table
+-------------------------------------------------------------------------------------------------------
+
+1. Differences between Merge Join and Lookup?  [Previous PDF]
+
+2. How do you implement left outer join using lookup?
+
+A: Specify in the General tabhow to handle no matching entries: Ignore failure
+
+3. What is the structure of unmatched result? –similar to source
+
+4. How do you identify record availability?
+
+A:    A: Merge join B: Lookup [WHERE EVER LOOKUP YOU ARE USING, THERE YOU CAN GO FOR MERGE JOIN]
+
+5. What is index position in the cache file? –the column where it sorts and keeps data
+
+6. What is the default cache size?  --Partial cache default is 25mb, full cache based on object
+
+7. How do we optimize memory when we use lookup? 
+                                                         
+A: 
+a)In partial cache: the advanced tab has cache Limitations or write customized query.
+
+ B) Full cache: Customized Query [which is optimized] Specification
+
+
+=============================
+FUZZY LOOKUP TRANSFORM
+=============================
+
+Normal lookup perform "exact match", whereas fuzzy lookup perform "similarity match".
+
+Normal lookup works on "Numerics / Dates / Strings", whereas fuzzy lookup works on "String" columns.
+
+Normal lookup return "required columns", whereas fuzzy lookup return "required columns + three additional columns [Row Similarity, Confidence, Column Similarity]"
+
+Ex: 
+Search of contacts in the mobile
+
+Search of content in the Youtube / Google 
+
+
+======================================================================================
+Incremental Loading
+======================================================================================
+Incrementing destination with source data [ incrementing hist table data using daily table]
+
+Delta Load: 
+	Finding the differences between source and destination, loading source not loaded records
+Period Load:
+
+	Getting required period data and load
+-----------------------------------------------------------------------------------------------------------------
+Scenario:
+		Create a package and schedule it [at 11.50 PM] to load daily same day data
+
+	
+Steps Required:
+		
+		a) Create a package 
+
+			Oledb Source with SQL Overwrite
+
+		select * from emp_daily where cast(st_dt as date)=cast(getdate() as date)  --Current date load
+
+		select * from emp_daily where cast(st_dt as date)=cast(getdate()-1 as date) --Yesterday date load
+
+		select * from emp_daily where cast(st_dt as date) between cast(getdate()-7 as date) and cast(getdate() as date)
+
+			--Last one week data load
+
+		b) Schedule the package 
+
+============================================================================
+SCD Practice:
+============================================================================
+Slowly Changing Dimension. Incrementing destination with souce data by taking changes for the new and old records.
+
+Type 1: No Hist: New record inserted and old record updated / overwritten
+
+Type 2: Full Hist: b) New record inserted b) Old record    inserted + hist maintenance process
+
+Type 3: Partial Hist: a) New record inserted b) Old record movement of history level values
+
+Approaches to implement SCD:
+
+1st Approach:
+-----------------
+We implement practically three ways [Manual Approach]
+
+a) Using Look up transform
+b) Using Merge Join transform
+c) Using Merge Command
+
+2nd Approach:
+------------------
+Wizard / Graphical Approach:
+
+SCD Transform [ rarely used / not recommended due to perforamnce leackage]
+
+============================================================================
+CDC Practice:
+============================================================================
+CDC: Change Data Capturing
+	
+	The changes happened at source (i.e Insert, Update, Delete etc.) moved to target using CDC mechanism.
+
+	How does it happen?
+
+	a) We specify CDC database and CDC table
+
+	b) If there are any source changes, then CDC mechanism will get those changes and move to log file area.
+		It also capture changes in to CDC log tables.
+	c)You can use CDC functions to get data and process into another component.
+
+
+	There are two ways to implement
+	a) SQL Server built-in procedures
+	b) SSIS Tasks [CDC Tasks and Transforms]
+		
+
+
+
+
+
+============================================================================
+Parallelism in SSIS
+============================================================================
+
+What is Parallelism?
+
+Running multiple units of code simultaneously is called parallelism.
+Simplistically, If a program take hour to run on 1 CPU, it should take 15 minutes to run on 4 CPUs.
+
+Ex:
+
+If four tasks running one by one for an hour, if you run idependently and parallel, they run in 15 minutes
+--------------------------------------------------------------------------------------------------------------------------
+What is the advantage of parallelism?
+
+Reduces the time taking.
+
+Note: 
+
+Too many parallel units kill the performance [because they use more threads and more cpu resources]
+--------------------------------------------------------------------------------------------------------------------------
+How many ways we achieve parallelism in SSIS?
+
+There are two ways
+
+a) Control Flow Level:  [ To run tasks parallel]
+
+	MaxConcurrentExecutable property setting
+
+	-1: System will run number of logical processors + 2 tasks
+
+	value: those many tasks it will run parallel.
+	
+	Ex: If you want to run 8 tasks, then maxconcurrentexecutable property: 8
+
+b) Data Flow Level [ To load data rows parallel]
+
+	Engine Threads and Number of Rows
+
+	Ex: 
+	
+	DefaultMaxNumber of rows: 10000
+	Engine threads: 10
+	Then each thread process 1000 records
+
+	Where as when you increase the engine threads:20, then each thread process 500 recors and implement parallel.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

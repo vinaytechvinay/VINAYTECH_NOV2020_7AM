@@ -1,0 +1,470 @@
+What is Container in SSIS?
+
+	Container contain multiple tasks. It has properties and the properties used by the underlying tasks.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+How many types of containers available?
+
+	4 types of containers available
+
+	a) Taskhost container: Each task itself is a container [Ex: Dataflow]
+	b) Sequence Container:
+			Real-Time usage:
+
+			1. For parallel execution in a portion of package
+			2. Transactional Implementation inside package
+
+	c) For loop container: Acts like for loop concept in programming languages
+	d) Foreach loop container: Acts like enumerator process in programming languages
+-------------------------------------------------------------------------------------------------------------------------------------------
+Difference between forloop and foreachloop?
+
+	Forloop:
+		a)Repeats to the specified number of times [end point we know]
+		b) It requires a variable
+		c) It has three sections to fill.
+				1. Initial value section
+				2. Assignment section
+				3. Evaluation section
+
+		Ex:
+			Load 3 files into a table [count we know [3], so for loop required]
+
+	Foreach loop:
+
+		a) Repeats till the same structure meets [we don't know the end point]
+		b) It requires enumerator [structure holding variable]
+		c) It requires structure specification and keeping another variable to hold the structured object
+
+
+		Ex:
+		Load set of files in a folder  into a table [ we don't know the count of files]
+		Load set of emails to a server
+		Process set of records
+		Process set of excel files
+=======================================================================================
+Script Task
+=======================================================================================
+
+When do we go for scripting?
+
+Majorly two purposes of scripting in real-time
+
+a)If we want to create custom task in control flow (script task) and custom operation at dataflow ( script component at source, transform and target) scripting is required.
+
+b) To work with variables 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+As a developer what we need to know?
+
+How do we call a method / variable in a script?
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+A script basic rules and hierarchy?
+
+	1. Here scripting is .Net scripting (Visual Basic or C#).
+	2. The protocols, conventions, executions and other debug options (locale, break point) as available in VB or C#.
+	3. It has a parent called “Namespace”, which contains child objects called “classes” where class hold methods and variables.
+	4. To call a method / variable we should know the class name and namespace name.
+
+	Ex: Show is a method available under class MessageBox, which is inside namespace called System.Windows.Forms. 
+
+	Namespace.Classname.Methodname(variables / expression)
+
+	System.Windows.Forms.MessageBox.Show ("MSBI Class");
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Referencing and calling in C#
+
+It is close to C and Java, expects semicolon at the end of each statement.
+
+Uses Using clause to refer namespace.
+
+	Using System.Windows.Forms;
+
+	MessageBox.Show(“Vinaytech Training Institute”);
+
+Note: C# supports semi colon after each line
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Referencing and calling in VB
+
+It is close to traditional Visual Basic scripting and language. No semicolon required.
+
+	Uses Imports clause to refer namespace.
+
+	Imports System.Windows.Forms
+
+	MessageBox.Show(“Vinaytech Training Institute”)
+
+Note: VB does not  support semi colon after each line
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Display/ assign /modify variable value
+
+Ex:  Dts.Variables[“variablename / text / expression”].Value
+
+	Dts-->System Defined Class
+	Variables-->System Defined Method
+
+Note: Variable name / expression is case sensitive 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+What type of operations we do for package variables at scripting?
+
+There are two types of operations
+
+a) Readonly [package variables just readonly at scripting]
+
+b) Read or Write  [package variables can be read and write at scripting]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Frequnt operations in the classroom
+
+Message box display
+
+	MessageBox.Show(Dts.Variables["i"].Value.Tostring())
+
+Variable usage
+
+	Dts.Variables["i"].Value=10;  --the value 10 assigned to the variable i
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Practice 1:
+	Display each iteration of for loop using MessageBox.Show method
+
+Practice 2: 
+	Load three sheets data into three tables
+
+	Sheet1$--p1
+	Sheet2$--p2
+	Sheet3$--p3
+
+	This is customized situation, Microsoft does not provide you any task or transform. So, you need to drive a way.
+	Here Script task help us to create dynamic sheet and table name, and run every time to load.
+
+
+Practice 2: 
+	Load three sheets data into Single Table
+
+
+Practice 3:
+	
+	Create own function and calling inside script 
+
+Practice 4: 
+
+	Loading different types of files with diff structures into dfferent tables
+========================================================================================
+Foreach loop:
+========================================================================================
+		a) Repeats till the same structure meets [we don't know the end point]
+		b) It requires enumerator [structure holding variable]
+		c) It requires structure specification and keeping another variable to hold the structured object
+
+
+		Ex:
+		Load set of files in a folder  into a table [ we don't know the count of files] : File enumerator
+		Load set of emails to a server : NODELIST enumerator
+		Process set of records: ADO.net enumerator
+		Process set of excel files : Ado.net enumerator
+		Process set of variable values: Variable enumerator
+
+Scenario 1:
+
+	Load set of csv files with the same structure to a table.
+
+
+Scenario 2:
+
+	Load set of csv files with the same structure to a table. Move successful files into SUCCESS Folder and Failure files into FAILURE folder and also find the count of files loaded.
+
+
+========================================================================================
+Project Cum Case Study 1: [ Complex] : Nuanece project to understand multiple for each loop containers usage
+
+				Collect the documents and practice
+========================================================================================
+
+
+
+========================================================================================
+Transactions:  Help us to implement set of operations as a single task. If anywhere fails rollasback the previous operations 
+========================================================================================
+What is Transaction?
+
+	Transaction is the mechanism which run set of tasks in SSIS, if all success it treats as success. If any fails it treates as failure and
+	rollsback the previous successful tasks operations.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------	
+How Many Transaction options available in SSIS?
+
+	a) Not supported: It will not participate in transaction. Success / failure of other tasks no impact here.
+
+	b) Required: It will join if already transaction running, otherwise creates a new transaction
+
+	c) Supported: It will join if already transaction is running
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Do we have this mechanism in other areas?
+
+Yes, we have in all IT applications.
+
+In languages, we implement using
+
+Begin Transaction
+---
+---
+End Transction
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+How do we implement practically:
+
+	a) Start the service DTC[ Distributed Transaction Coordinator]  [Go to Services: DTC-->Start]
+
+	b) Specify Transaction options for the tasks
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Do we take Transaction in every package?
+
+No, there is a consideration.
+
+If the package having many tasks and need to run as a single unit, then transaction is required.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is isolation method / option?
+
+When objects inside transactions, if you want to perform any operation, then it is called as isolation.
+There are multiple levels, one of the important option is With (Nolock).
+It will read the data from the tables although operations going on the objects. This can also be called as inconsistent reading.
+
+[Note: Refer the PDF]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+One Real-Time Example:
+
+I have a situation in one project. All the master dimensions need to be loaded first. If they all got success, then load child dimensions.
+
+We took all Master Dimensions [ using different data flows] in one Sequence Container and kept a transaction option: Required.
+
+We took all child dimensions in another sequence container which is connected from the first: Here also we mentioned Transaction Option: Required
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Practical:
+
+Refer to the PDF for detailed practice
+
+
+
+========================================================================================
+Checkpoint: Transaction rollback if any operation fails, whereas checkpoint resumes [restarts] from the failed task
+========================================================================================
+What is the purpose of checkpoint?
+
+	To perform restart of tasks operations inside package.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Can we use checkpoint and trasaction in a single package?
+
+Not possible, because Transaction rollback if any operation fails, whereas checkpoint resumes [restarts] from the failed task
+[one go backward and other come forward]
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+DO we have this mechanism in other IT areas?
+
+Yes, in other applications this is available as Commit Interval / Commit Point etc...
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What are the options requird for checkpoint?
+
+a) Checkpoint file name : Specify a file name to create when package fails
+b) Save checkpoints: True
+c) Checkpoint Usage: IfExists
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What are the checkpoint usage options available?
+It has three options
+a)	Never Always package starts from the first task and restart not possible.
+b)	IfExistsPackage verifies checkpoint file, if exists uses the check point mentioned and resumes from the respective task otherwise starts from the first task.
+c)	AlwaysPackage always require checkpoint file to start.
+d) Mention for each task FailPackageOnFailure: True [ this will fail the package if any task fails]
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is the default nature of a package running?
+
+Always starting from the first task.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is the checkpoint process?
+
+a)When a package configured with checkpoint mechanism, if any task fails, checkpoint file created and stores the failed point.
+b) At the time of restasrt, system goes to the checkpoint file and identifies the failed point and resumes from that point.
+c) After successful execution of package, checkpoint file is dropped.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Do we take checkpoint in every package?
+
+No, there is a consideration.
+
+If the package having many tasks and run for long time, if you want to resume from the failed tasks by saving time and effort, this checkpoint is required in that situation.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Practical:
+
+Refer to the PDF for detailed practice
+
+
+
+======================================================================================
+Debugging
+========================================================================================
+What is debugging?
+
+Debugging is the process of bugging [drilling] the code for detailed observation of the package and package components execution.
+There is a saying “A good debugger is a good developer”.
+--------------------------------------------------------------------------------------------------------------------------------------------
+How debugging helps in real-time?
+
+Debugging helps in the below situations
+a)Identifying the process of execution or data flow
+b)Identify data issues
+c)Identify performance issues [identify bottlenecks]
+
+DEBUGGING (Real-time classification):
+
+a)Data Debugging:
+
+Data viewers used for this purpose to identify data issues.
+
+b)Task debugging:
+
+Task debugging to see a particular task execution or monitoring before proceeding with other tasks.
+--------------------------------------------------------------------------------------------------------------------------------------------
+How many ways of debugging available?
+
+There are three ways of debugging 
+
+1)Dataflow level –Data viewers
+
+2)Control flow level – Partial execution 
+3) Control flow level- Breakpoints and Hit count
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Data viewers
+
+Displays data between components. Used for observing data between source, transform and destination
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Breakpoints: Helps to take break during the execution process at a specified event.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+		
+Why do we require hitcount?
+
+To control the number of breakpoints, we go for hitcount.
+
+
+Hit Count:  
+
+Breakpoint iteration point. There are three options.
+a) Hit count equals: Takes break at the specified value.
+
+b) Hit count greater than or equal to: Take breaks after the specified value.
+
+c) Hit count multiple: Break at the specified value iteration.
+
+
+======================================================================================
+Precedence Constraint
+========================================================================================
+
+How do you control the execution flow of package components?
+
+Running another task based on one or multiple tasks. For this control flow precedence constraints required. There are 4 options
+--------------------------------------------------------------------------------------------------------------------------------------------
+What is precedent constraint? And how many options available?
+
+It controls the execution flow at control flow or workflow in the package level. 
+
+Precedence constraint Previous Component Condition.
+
+The following component execution begins based on this constraint.
+
+It has 4 options
+
+a) Constraint: Static option to control the flow [ success, failure, completion]
+b) Expression: Based on expression other tasks will run
+c) Expression and constraint: Both expression and constraint satisfy then other task will run
+d) Expression or constraint: Either expression or constraint satisfy other tasks will run
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+What is Constraint Explain an example?
+
+Constraint
+
+1.Direct option
+
+2.There are three constraints
+
+a)Success—The component should run without errors
+
+b)Failure—The component fails with errors
+
+c) Completion—The component either success or failure 
+
+Scenario1: 
+
+Run DF2, DF3, DF4 based on DF1 events (success, failure and completion)
+--------------------------------------------------------------------------------------------------------------------------------------------
+What is Expression and Explain with an example?
+
+Expression
+
+a)To control the execution of component when it is inside loop
+b)To run other other task based on manual condition
+
+Scenario1: Run DF2 if the DF1 repeated 3 times 
+
+
+a)To run a task based on some result
+
+Scenario2:  Run Execute SQL task if the total amount is more than 300000 and the number of rows over 10000
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+What is Expression and Constraint, Explain with an example?
+
+Expression and constraint: Expression and constraint should satisfy
+
+Sc2: Run DF2 if the DF1 repeated 3 times and is successful at 3rd iteration.
+--------------------------------------------------------------------------------------------------------------------------------------------
+What is Expression Or Constraint, Explain with an example?
+
+
+Expression or constraint: Either Expression or constraint should satisfy
+
+Sc2: Run DF2 if the DF1 repeated 3 times and is failed at 3rd iteration.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+What are multiple constraints and Explain with an example?
+
+
+Multiple constraints
+
+Executing a task based on multiple precedence constraints.
+The previous topic talks about single constraint.
+There are two operators to implement
+
+a)Logical AND All conditions to be satisfied. Displayed with thick lines.
+Scenario1: Run DF4 if DF1, DF2 and DF3 are successful.
+
+Scenario2: Run DF4 in the below three situations satisfied
+
+b)DF1 failure
+c)DF2 success
+d)DF3 should return more than 20000 records
+
+e)Logical ORAny condition to be satisfied. Displayed with dashed lines.
+
+
+
+
+	
+	

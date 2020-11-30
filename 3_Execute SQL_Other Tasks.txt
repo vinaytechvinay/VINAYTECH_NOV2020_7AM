@@ -1,0 +1,349 @@
+========================================================================================
+RDBMS Tasks [ The tasks deal with relational databases] Databases which are having proper relationship between tables
+========================================================================================
+Importantly three tasks and one transform available in SSIS
+
+a) Bulk Insert Task
+
+		1.File-->Table loading
+		2. Calls database BCP [bulk copy program] process to perform
+
+b) Execute SQL Task
+
+		To perform SQL operations in mutiple databases [Oracle,SQL Server, Teradata etc.]
+
+c) Execute T-SQL Task
+
+		To perform SQL operations only on SQL Server
+
+
+d) OLEDB Command Transform
+
+		This perform SQL operation for each input record
+
+========================================================================================
+What is the advantage of using Execute SQL Task in real time
+========================================================================================
+
+a)Truncate and load
+
+b) Dropping / disabling indices or triggers, recreating / enabling indices or triggers
+
+c) Calling procedures and functions with arguments and implementing functionality
+
+d) Getting results from procedure / function
+
+e) Mostly writing select statement to get single / multiple rows [dataset result] from db
+
+f) Writing MERGE command as part of SCD operation
+
+g) Writing Insert / update / DELETE commands to perform static/ dynamic {which take parameters} DML operations
+
+========================================================================================
+How do we refer parameters in Execute SQL Task
+========================================================================================
+With &, ? etc. based on the provider.
+
+Paramegters(&, ?) are for dynamic operations [dynamic list of values passing]
+
+First ? --> Parameter 0
+
+Second ?--> Parameter 1
+
+Third ?--> Parameter 2
+
+========================================================================================
+How many ways we pass SQL code in Execute SQL Task
+========================================================================================
+
+a) By directly writing statement
+b) By passing a file which has SQL statements
+c) By passing a varibale which has SQL statement[s]
+
+
+========================================================================================
+How does Execute SQL Task return values / rows ?
+========================================================================================
+Using ResultSet option
+
+========================================================================================
+How do we pass dynamic properties to  Execute SQL Task  ?
+========================================================================================
+Expression section
+
+========================================================================================
+Explain Result Set options
+========================================================================================
+
+a) None: No result returned
+
+b) Single Row: One row returned
+
+c) Full Resultset: Multiple rows returned
+
+d) XML Resultset: XML is the output
+========================================================================================
+Examples to practice: [Refer to the PDF]
+========================================================================================
+
+a) Truncate data example
+
+b) Deleting data from multiple tables
+
+c) Inserting single row [static values]
+
+d) Inserting single row [ Dynamic values]
+
+e) Returning single row
+
+f) Calling procedure without parameters
+
+g) Calling procedure with parameters [input]
+
+h) Calling procedure with Input, Output and Return parameters
+
+i) Crate a function to get a value and return a value
+
+j) Get data from a table, split into column values, load respective system data into the respective folder [Full Resultset]
+
+k) Take SQL statements in a file and call it as file connection
+
+l) Take SQL Statement in a variable and call it as Variable connection
+
+
+
+========================================================================================
+Analysis Services Operation Tasks in SSIS
+========================================================================================
+Analysis Services Contain Cubes [Dimension tables, Fact Tables, Relationships, Model, Cells, Calculations, KPIs etc...]
+
+You can perform the Definition Operations and Data Loading operations from SSIS.
+For this 5 tasks available
+
+a) Analysis Services Execute DDL Task  
+
+		This task performs DDL operations [Create, Alter, Drop etc.] on cube and cube objects
+
+b) Analysis Services Processing Task***
+
+		This task performs Data Loading or Data or Structure Processing into Cube Objects with different options [Full, Default, 		Data, Clear, Add etc...]
+
+		This task loads data into Tabular and Multidimensional Cubes.
+
+		Ex: 
+		Fact table loading
+		Dimension table loading
+		Removing data from a partition
+		etc...
+
+Practice:
+
+		a) Drag and Drop the task
+		b) Specify Cube Server Name and Database name
+		c) Specify Tables and Options by clicking ADD
+
+c) Execute Process Task
+
+d) Execute SQL Task
+
+e) Script Task
+
+========================================================================================
+DATA PREPARATION TASKS 
+========================================================================================
+
+OLTP-->Quality Layer (DQS component / Data Profile Task-)>ETL->DWH-->Semantic-->Reporting
+
+Answer: 
+
+Before processing data from other systems, you sometimes have to first retrieve it or validate the content to determine your level of confidence in the data’s quality. 
+
+SSIS provides a set of tasks that can be used to retrieve data files using the files and folders available in the file system, or it can reach out using FTP and web service protocols.
+
+How do you ensure the Quality of data before load through SSIS?
+
+a)Data Profile Task 
+b) Data Quality Services [DQS]
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+What exactly Data Profile Task will do?
+
+It applies 7 rules on each column in the input data and produces a result.
+We will monitor the result and then take decision to process / not.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+What exatcly DQS does?
+
+It perform multiple quality operations
+
+a) Data Profiling: Data monitoring for the required information
+b) Data Scrubbing: Data Changing from one format to another format [also a part of cleansing]
+c) Data Cleansing: Removing inconsistent, junk, wrongly formatted, unwanted data
+d) Data Matching: Keeping similar data in a place
+
+
+=========================================================================================
+FTP TASK
+=========================================================================================
+What is FTP? When do go for FTP task?
+
+File Transfer Protocol [FTP] used to work with files or folders (send, receive, create, remove etc.).
+We usually use this to send or receive files or folders from local to remote area [specially FTP area].
+
+What are the situations you have observed?
+
+Local machine    < ---->    Send/Transfer< ----> Remote [FTP Server Area]
+
+Note: FTP Server is mandatory to implement this task.
+
+
+Real-Time example:
+=============
+Many clients used to keep their data in the form of zip folders in an FTP Server. As a developer we need to create an application which 
+we get the folder data in to SSIS area [required client storage area], unzip and process one by one file.
+
+Here two tasks required
+
+a) To get the zip folder from FTP[ need FTP Task]
+b) To Unzip the folder [ need Execute Process Task]
+c) To Load set of files [ need Foreach loop container and Data Flow Task]
+
+=========================================================================================
+Web Service Task
+=========================================================================================
+
+The Web Service Task in SSIS is used to retrieve XML-based result sets by executing a method on a web service. 
+
+Web services are a big part of advancing service-oriented architectures, and they can be used in SSIS to provide real-time validation of data in your ETL processes or to maintain lookup or dimensional data.
+
+
+=========================================================================================
+Workflow control Tasks [ very important]
+=========================================================================================
+How do we control the workflow [control flow and packages execution]?
+
+There are two ways
+
+a) Precednence constraints:  This is helpful in control flow task to control various tasks execution
+
+b) Execute Package Task: This calls another package in the main package
+
+
+
+What exactly execute package does and explain properties?
+
+Execute Package Task calls a package inside another package.
+It has many properties.
+
+a) Package Source [ Inside Project / External (outside of the current project)]
+
+b) Package Password
+
+c) Execute Out Of Process: True / False 
+
+		Each package has its own processing area, the current child package if you wish to run inside parent process,
+		then make it : "False", if you want to run the child package individually in its process [usually we prefer this when we
+		have complex functionality in the child], then specify "True".
+d) Parameter Binding
+
+		Passing Parent Parameter Values to Child
+
+
+=========================================================================================
+Execute Process Task [ windows administration task, but for developers also helpful]
+=========================================================================================
+
+The Execute Process Task will execute a "Windows or console application inside of the Control Flow"[Windows Administration Task].The most common example would have to be unzipping packed or encrypted data files with a command-line tool.
+
+When do we use in Real world operations?
+
+a) Unzip folders 
+b) Zip folders 
+c) Executing standard console commands (rmdir, copy, move etc…)
+d) Executing software patches 
+e) Executing batch files (.bat) 
+f) Working on component object model files (.com) 
+g) Working on Dynamic Link Libraries (dll)
+
+=========================================================================================
+Message Queue Task
+=========================================================================================
+
+[Windows Administration Task] The Message Queue Task enables you to send or receive messages from Microsoft Message Queuing (MSMQ) right out of the box. 
+
+=========================================================================================
+Send Mail Task
+=========================================================================================
+
+The Send Mail Task provides a configurable SSIS task for sending e-mail messages via SMTP. 
+
+=========================================================================================
+WMI [ Windows Management Instrumentation] Reader Task-Admin Task
+=========================================================================================
+
+[Windows Administration Task] Windows Management Instrumentation (WMI) is one of the best-kept secrets in Windows. WMI enables you to manage Windows servers and workstations through a scripting interface similar to running a T-SQL query. The WMI Data Reader Task enables you to interface with this environment by writing WQL queries (the query language for WMI) against the server or workstation (to look at the Application event log, for example). The output of this query can be written to a file or variable for later consumption. 
+
+Following are some applications for which you could use the WMI Data Reader Task:
+
+•	Read the event log looking for a given error.
+
+•	Query the list of applications that are running.
+
+•	Query to see how much RAM is available at package execution for debugging.
+
+•	Determine the amount of free space on a hard drive.
+
+=========================================================================================
+WMI [ Windows Management Instrumentation] Event Watcher  Task-Admin Task
+=========================================================================================
+[Windows Administration Task] The WMI Event Watcher Task empowers SSIS to wait for and respond to certain WMI events that occur in the operating system. The task operates in much the same way as the WMI Data Reader Task operates. 
+
+The following are some of the useful things you can do with this task:
+
+•Watch a directory for a certain file to be written.
+
+•Wait for a given service to start.
+
+•Wait for the memory of a server to reach a certain level before executing the rest of the
+Package or before transferring files to the server.
+
+•Watch for the CPU to be free.
+
+Automatic Package running using Event Watcher Task
+
+Scenario: Wait for a file to run package, never run manual / schedule running of packages
+
+=========================================================================================
+Package Running Ways
+=========================================================================================
+How many ways we run a package in real time?
+
+a)Manual
+b)Scheduled
+c)Event Watcher kind of concept, waiting for an input file and run automatically
+
+=========================================================================================
+Transfer Tasks [from one instance to another instance]
+=========================================================================================
+
+These tasks help to implement the respective operation from one instance to another instance
+-------------------------------------------------------------------------------------------------------------------
+How do you move master stored procedures from one instance to another instance?
+
+Transfer master stored procedure task
+-------------------------------------------------------------------------------------------------------------------
+How do you move logins and jobs from one instance to another instance?
+
+Transfer logins or jobs task
+-------------------------------------------------------------------------------------------------------------------
+How do you move databases from one instance to another instance?
+
+Transfer database task
+
+=========================================================================================
+XML Task
+=========================================================================================
+
+The XML task is used to work with XML data. 
+
+Using this task, a package can retrieve XML documents, apply operations to the documents by using Extensible Stylesheet Language Transformations (XSLT) style sheets and XPath expressions, merge multiple documents, or validate, compare, and save the updated documents to files and variables.

@@ -1,0 +1,875 @@
+Demo Agenda
+
+a) Introduction
+
+b) Data, Data Availability, Data Storages, Data Formats [because we work on Data extensively in the analysis]
+
+Data: Anything you store
+
+Data availability: 3 ways [structured, semi structured, unstructured]
+
+Data Storages: a) On-Premise [in your company level / in your system level storage]
+	       b) Cloud storage [third party organizations storage] 
+		Ex: AWS, Amazon, Microsoft, Google, WorkDay etc.
+
+Data Formats: 
+	a) File stream format [ data in the form of files]
+	b) Database format [data in the form of tables]
+
+
+  
+c) BI, BI Process, MSBI, MSBI Exclusive usage.
+
+BI Applications use the above data [ OLTP data {structured} or Generic Data {semi / unst}] and produce Decision support
+data [ analytical data]
+
+Any type of data ----> Report / Dashboard
+
+OLTP:  Online transaction processing
+
+	Day-Day business storage processing
+	Front-end and one back-end (Web / Mobile / Desktop / Tab front end--> Database storage)
+	Ex: Irctc, Bookmyshowm, cash deposit / withdraw etc.
+
+
+BI: Business Intelligence / Intelligence to the busiess, which helps to take decisions in the part of organizational growth.
+BI is a process which takes data, move in multiple layers and produce decision support data in the form of report /dashboard.
+
+BI tools:
+
+	To implement the above, there are many tools available.
+
+	Legacy BI [1990 onwards]
+
+		3 major layers [ETL, Semantic, Reporting]
+		Less data, less reports, less customers etc...
+
+		OLTP support [no support to unstructured and cloud ]
+
+
+	Modern BI [2010 onwards]
+
+
+		5 major layers [Quality,ETL, Metadata, Semantic, Reporting]
+		More data, More reports, More customers etc...
+
+		Any type of data, any store, any format
+
+Note: MSBI released as Legacy BI tool, but also provide support for Modern BI operations.
+
+MSBI: Microsoft Business Intelligence [ SQL Server Business Intelligence]
+
+Introduced in : 2005 [little late then other BI tools]
+
+MSBI as a suite / stack / pack with three major tools
+
+a) SSIS: Integration Services
+
+   Usage: It is integration of three services ( a) ETL b) Windows admin c) SQL Server Admin )
+
+   Core Service : ETL (Extract, Transform, Load)
+	
+   Real-time usage:
+
+	1. To create a huge DWH with lots of volumes. [Extract, Historical Features applying, Load]
+	2. To integrate data between multiple systems [oracle-->teradata, teradata-->sql server etc.]
+
+b) SSAS: Analysis Services
+
+    Usage: It is combination of multiple analytical service components
+
+	a) Multi-dimensional service [cube]: More data, more aggregate, more support
+	b) Tabular Service[Cube]: Less data, less aggregates, less support
+	c) Power Pivot
+	d) Data Mining
+
+    Real-time usage:
+
+	To create a seperate storage with aggregate and analytical data for data browsing and reporting
+
+c) SSRS: Reporting Services
+
+    Usage:  It is the combination of multiple reporting components
+
+ 	Reporting Services
+	Report Builder
+	Power View
+
+    Real-time usage: Generate reports and dashboards  from DWH / Cubes [from most of the applications]
+		
+
+MSBI : 2008 released
+
+MSBI 2008 R2 
+
+	MDS : Master Data Services
+	Usage: Used to manage metadata / master data
+
+	Real-time usage: Used to manage tables and their structures in the DWH.
+
+MSBI 2012: Data Quality Support +Big Data Support+ Cloud support added
+
+	DQS: Data Quality Services
+	Usage: Performing quality operations such as profiling, scrubbing, and cleansing.
+	Real-time usage: Used to ensure quality data before loading to DWH.
+MSBI 2014
+
+MSBI 2016 : Data Science and Unstructred data store more added
+
+	  R and Python Integration added
+	 Polybase mechanism introduced
+
+MSBI 2017
+
+
+MSBI 2019 [ Spark is added]
+
+
+MSBI Components: DQS, SSIS, SSAS, SSRS, MDS
+Versions: 2005, 2008,2008 R2, 2012, 2014, 2016,2017, 2019
+
+Pre-Requisite
+
+	Basic understanding of Excel / SQL 
+
+We provide you 4-5 hours SQL followed by classes.
+Detailed training also you can take [30 days training]
+
+Opportunities
+
+MSBI Suite Developer
+MSBI two components developer
+MSBI Single component developer
+SQL Server Developers / SQL Server DBAs MSBI components knowledge is compulsary
+
+
+Azure resources: SSIS compulsary, Tabular Model compulsary
+
+Power BI Resource: SSIS, Tabular Model, SSRS are added advantage
+
+What is the position of Microsoft in BI?
+
+Last 12 years it is the leader in the BI [ Top / No 1]
+
+MSBI is easier to learn / complex?
+
+Easier because Graphical User Interface.
+
+How much coding we use in MSBI?
+
+No coding except small small expressions writing.
+If your project is SQL based project, then we face complexity in writing SQL Procedures, Queries and others.
+[small companies / avg companies]
+
+Installation and HW SW Requirements:
+
+We take MSBI 2019 version classes. You can install 2019 / 2017 in your machines.
+Software will be provided, installation steps also given for you with video.
+
+OS 32 bit, Wndows 7: Older versions [2005, 2008, 2008 R2]
+
+OS 32 / 64 bit, windows 7 Sp1 : MSBI 2012
+
+OS windows 8: MSBI 2012, 2014
+
+OS windows 10: ALL versions you can install
+
+Drive Size: 5 GB storage
+Procesor: 1.5 GHz
+RAM: 2 GB RAM recommended
+
+Installation Process:
+
+Two parts of installation
+
+a) Servers Installation [SQL Server, IS, AS, RS, MDS, DQS]
+
+
+b) Clients Installation [ SSMS, SSDT]
+
+	Clients are used to work with the above servers.
+
+/* This is running notes only, detailed content in the given PDFs  */
+
+Oct 20 
+-------
+a)Installation Recap
+b)Lab Back up
+c)BI Real-Time flow
+d)MSBI Check List
+e)BI Practice
+
+DQS, SSIS, SSAS, SSRS
+
+Installation Process:
+
+Installation:
+
+Two parts of installation
+
+a) Servers Installation [SQL Server, IS, AS, RS, MDS, DQS]
+
+	Links to download software 
+	Installation PDF will be shared to you
+	Installation video [second demo video]
+
+b) Clients Installation [ SSMS, SSDT]
+
+	Clients are used to work with the above servers.
+	Installation video [second demo video]
+	
+	SSMS: SQL Server Management Studio: 
+		To work with Database Engine, SSIS, SSAS, SSRS, MDS, and Polybase databases
+	SSDT: SQL Server Data Tools
+		To work with SSIS, SSAS, SSRS applications
+
+
+Lab Backup:
+
+You have to download the given folder and browse sub folders to see the content.
+
+MSBI Real-Time flows
+
+Few companies: OLTP--> ODS-->Stage-->EDW-->DW-->Cubes-->Reporting
+Some more companies: OLTP-->Stage-->DWH-->Cubes-->Reporting
+
+Note: 
+a)Always intermediate layers increased based on the company financial spending on technical aspects
+b) We never load OLTP data to warehouse 
+
+MSBI Check List:
+
+Open the Excel, ensure you received all the documents and videos.
+Also confirm that you have attended all the specified sessions and having access on the locations.
+
+
+BI Practice
+------------
+We have five types of operations in MSBI.
+a) Quality Assurance [DQS]
+b) Data Loading [using SSIS and Import Export Wizard]
+c) Cubes Creation [ SSAS]
+d) Reports and dashboards creation [SSRS]
+e) Working on Master Data / Metadata [ MDS]
+f) Working on all types of data [Polybase]
+
+/*
+
+Data Loading Practice:
+
+*/
+
+Heterogenous applications to heterogeneous applications data movement possible using Import Export and SSIS.
+
+
+===================
+Import Export Wizard:
+====================
+
+a) Trasfer tables and views from one Database to another database
+b) Load flat file / excel file data into a Database
+
+Home Work:
+
+a) Open the given .SQL file in SSMS, and run one by one statement to create database, schema, view, procedure and function
+
+b) 
+Case Study 1:
+
+Load set of tables from one database to another database [same server / different server]
+
+Source Server name and Database Name: welcome\vinaytech_2019, db_dev
+Objects: Business.emp, dbo.vw
+
+Target server name and database name: welcome\vinaytech_bi, db_dev_1
+
+Use Import Export wizard to perform this operation
+[Start-->Programs-->Import Export...]
+
+c)
+Case Study 2:
+
+Create a back up of the database and restore into another database
+SSMS-->Database-->Tasks-->Backup
+
+SSM-->Database-->right click--> Restore files and folders-->
+
+Target Server name and Databas Name:
+
+
+Case Study 2:
+
+Loading a flat file into database table [new table / existing table]
+
+
+What is the process import export wizard doing in Real-time?
+
+It is creating a package and performing the operations.
+
+=============================================================================
+SSIS
+
+Follow PDF 1 onwards sequentially all the topics. The below is just overview of few concepts
+=============================================================================
+
+SSIS Definition: 
+
+SSIS is the integration of 3 services and the major service is ETL Service.
+[ETL/ELT, Windows Admin and SQL Server Admin Services]
+
+SSIS Real time usage: 
+
+a)	To integrate data between multiple systems
+b)	To process data in multiple stages (layers)
+c)	To construct a proper Data warehouse and Data Mart.
+
+---------------------------------------------------------------------------------------------------------------------
+SSIS Package Execution:
+
+SSIS Start--> Prevalidate--> Validate->Post Validate--> Pre Execute -->Execution--> Post Execution -->Finish
+
+Data Flow Process:
+
+Source--> SSIS Memory(where you installed) / In-line memory or buffer memory--> Target
+
+Source--> SSIS Memory(where you installed) / In-line memory or buffer memory-->in-memory-->in-memory-> Target
+---------------------------------------------------------------------------------------------------------------------
+What is SSIS?
+
+SQL Server Integration Services. It is the combination of 3 services [ ETL, Windows Admin, SQL Server Admin]
+---------------------------------------------------------------------------------------------------------------------
+Which Service SSIS does most?
+
+ETL Service
+---------------------------------------------------------------------------------------------------------------------
+What is the heart of SSIS tool?
+
+ETL process
+---------------------------------------------------------------------------------------------------------------------
+What is the practical flow of SSIS?
+
+Solution-->Projects-->Packages
+---------------------------------------------------------------------------------------------------------------------
+How many components a package contain?
+
+Control Flow, Data Flow, Event Handling, Parameters, Package Explorer
+---------------------------------------------------------------------------------------------------------------------
+Which is heart of SSIS?
+
+Data Flow
+---------------------------------------------------------------------------------------------------------------------
+What is brain of SSIS with respect to tasks?
+
+Control Flow
+
+---------------------------------------------------------------------------------------------------------------------
+How do you define Solution in single line?
+
+It is a over all process of operations with collection of projects.
+
+---------------------------------------------------------------------------------------------------------------------
+How do you define Project in single line?
+
+Subset of solution with a specific functionality and contains packages and other relevant items
+
+---------------------------------------------------------------------------------------------------------------------
+How do you define Package in single line?
+
+It is the core component which perform three services [ ETL, Windows Admin and SQL Server Admin]
+It is a component with collection of containers and tasks.
+---------------------------------------------------------------------------------------------------------------------
+What is the extensions of various components in SSIS package?
+
+Solution: .sln
+Project: .dtproj
+Package: .dtsx
+Package Part: .dtsxp
+Connection Manager: .conmgr
+Parameters: .param
+
+Note: Other extensions supported in the Miscellaneous section
+---------------------------------------------------------------------------------------------------------------------
+How many ways we execute package:
+
+Many ways [more than 8 ways]
+
+a) Debug Menu-->Start Debugging
+b) Press 'F5'
+c) Package-->right click-->execute package
+etc.
+
+---------------------------------------------------------------------------------------------------------------------
+How many colors SSIS use?
+
+a) Grey: Disable
+b) White: Ready to execute
+c) Green: Success
+d) Red: Failure
+e) Yellow: Running
+---------------------------------------------------------------------------------------------------------------------
+What is the advantage of annotation?
+
+Annotation [with colors and font] will help the developers and others work with the application easily.
+---------------------------------------------------------------------------------------------------------------------
+What is the advantage of proper naming convention?
+
+For packages, tasks, containers, and variables names help to identify them easily and also work with them easily.
+
+Prefix Recommendation:
+pkg_
+df_
+esql_
+
+Note: Prefer lowercase for the names.
+---------------------------------------------------------------------------------------------------------------------
+Difference between variable and parameter?
+
+Variable:
+	Stores value and substitute value wherever used
+	No user interaction to the variable
+	Scope is at Package / Container / Task level
+
+Parameter:
+	Stores value and substitute value wherever used
+	User interaction to the variable available
+	Scope is at Package / Project level
+
+---------------------------------------------------------------------------------------------------------------------
+What are the major tasks we use in real-time?
+
+Very frequent tasks : Data Flow, Execute SQL, File System Task
+Container: ALL Containers
+Other Tasks: Execute Process, Send Mail, Expression, Analysis Services Processing task etc.
+
+=========================================================================================
+What are the different types of files supported in SSIS?
+Different Types of files we use in SSIS?
+=========================================================================================
+
+a) Flat File [Fixed width  / Variable [Delimited] ]
+
+	Type: User Defined
+	Extension: .txt, .csv,.out, .dat, .vinaytech etc.
+
+	Fixed Width: 
+
+		Here the fields length is same.
+		It may or may not have seperators / delimiters.
+		Ex: PANNO, AADHARNO etc.
+
+	Varaible Length:
+
+		Here the field lengths are different.
+		It will contain delimiters / seperators.
+		Ex: Address, Remarks etc..
+
+Note: Delimiters [ Comma, Pipe (|), Tab, Space, CR, CRLF etc.]
+	
+	CRLF: Carriage Return Line Feed / Forward
+	CR: First Character Of A Line
+	LF: New Line
+	CRLF : First Character In the New Line
+
+
+b) Excel File
+
+	Structure Type: System Defined
+	Extension: .xls, .xlsx etc.
+
+c) XML File
+
+	Structure Type: User Defined
+	Extension: .xml
+
+	Note: We need XML Schema Definition File [.xsd file which describe XML content] to work with XML files
+
+d) RAW File
+
+	Structure Type: User Defined
+	Extension: .dat
+
+	Note: It is flat file with biranry formatted content [Non readable]
+
+Note: JSON [Java Structured Object Notation] also supported but handling is different
+
+=========================================================================================
+Before you work with any file, try to know the below settings
+=========================================================================================
+
+a)File location / path : Server name / folder name/ file name / extension
+b)File header info {skip info}  :  Ex :2
+c)Column headings position:  Ex: 3
+d)File type (delimited / fixed length)
+e)Delimiter
+	Row delimiter:  Ex: CRLF
+	Column delimiter:  Ex: ,
+f)Text qualifier : How do you want to qualify text
+Name and location double quotes, so text qualifier for them is double quote.
+g)Locale and code page
+Language and country code
+Note: Universal acceptable is UNICODE [UCS types]
+
+
+What is Csv file and how do we work it?
+
+Csv file:  
+	a) It is comma separated column delimiter file and saved with .csv.
+	b)Opened with either excel / flat file editors {notepad/ word pad}
+
+What is UCS or Unicode? What is the usage of it?
+
+UCS stands for Universal Character Set.
+You want to manage maximum possible types of data, UCS is required.
+
+What do you mean by text qualifier?
+
+How do you want to qualify the text, the character used to identify the data.
+Ex: “vinay”,  here text qualifier “ (double quote)
+
+=========================================================================================
+Types of Data Loading and Tasks Used
+=========================================================================================
+
+Real Time Process Flow:  
+
+	OLTP-->ODS/ Stage--> EDW-->DW--> Cubes-->Reporting
+
+Direct Loading: 
+		No logic and loading between Source to Target
+
+		Ex: OLTP-->ODS / Stage
+
+		SSIS Tasks: 
+			Import Export Wizard, Data Flow Task, Bulk Insert Task, Execute SQL Task
+
+Incremental Loading:
+
+		Already target having data, from source we accumulate that.
+		Ex:
+		Stage-->EDW
+		EDW-->DW
+
+		SSIS Tasks: 
+			Data Flow Task, Execute SQL Task
+
+
+=========================================================================================
+Bulk Insert Task
+=========================================================================================
+More volumes of flat file data loading into target without any intermediate logics.
+
+It calls database bcp [Bulk Copy Program / BULK INSERT DML Command] command process.
+
+Note:
+BULK INSERT [dbo].[PARTY_SRC] FROM 'C:\LAB_BACKUP & study material\INPUT_FILES\PARTY_SRC.csv' WITH(CHECK_CONSTRAINTS,CODEPAGE='RAW',DATAFILETYPE='char',FIELDTERMINATOR=',',ROWTERMINATOR='\n',FIRSTROW=3)
+
+
+I want to load 300 to 700 records in a file using Bulk Insert Task?
+Go to options
+	First row: 300
+	Last row: 700
+
+
+What are the best options we need to take while loading more volumes of data?
+
+	Options: 
+		Uncheck  CHECK CONSTRINTS: So that data loaded faster
+		Check      TABLE LOCK: So that other people can not work on the table
+		Uncheck   Fire Triggers: So that data loaded faster
+=========================================================================================
+Data Flow Task
+
+Case Study 1: Normal Load
+
+Take Flat File Source and OLEDB Destination (Table / View), Configure and run. View the result
+
+Case Study 2: Fast Load [ close to Bulk Insert task / Command]
+
+ OLEDB Destination (Table / View Fast Load), and mention fast load options and run. View the result
+
+Case Study 3: Truncate and Load / Fresh Data Load 
+
+	Take Execute SQL Task (Truncate Table Party_Src)--->Precedence Constraint (Success) / Simply Link-->Data Flow Task 
+
+	Run and view the result.
+
+Case Study 4:
+
+	Take Break point at Execute SQL Task, right click-->break points-->Choose radio button On-Post Execute
+
+	Run and view the result. It stops after successful execution of Execute SQL Task, To continue running, Debug Menu--> Continue
+
+=========================================================================================
+Which tasks we use frequently in realtime for data loading in SSIS?
+
+Majorly three tasks to process data.
+
+a) Import Export Wizard: Hetetogenous systems load [ slow loading ]
+
+b) Data Flow Task:  Slow and Faster loading [Fastload] between heterogenous systems with / without transforms
+
+c) Bulk Insert Task : Only from file [more data] to table without any transforms 
+=========================================================================================
+
+What are the frequently used source and target systems?
+
+a) Flat files (.csv, .txt, .dat, .out etc.)
+b) Databases (SQL Server, Oracle, Teradata etc.)
+c) Excel Files
+
+========================================================================================
+Import Export WIzard
+========================================================================================
+This wizard helps to load / unload data from heterogenous sources[different].
+Ex:
+Oracle-->SQL Server
+Teradata--> Oracle
+Excel-->File [text editor file with any extension  .txt, .dat, .out, .vinaytech...]
+File-->Excel
+
+Real-Time usages:
+
+a)* You have some tables in one database and you want to move to other database, then this greately helps.
+b) You want to move directly data, then also helpful for us.
+
+How many ways we will open this wizard?
+
+a) Start-->Programs--> SQL Server 2012/2017/2019  -->Import Export Wizard
+b) SSMS-->Database Engine-->Any Database-->Right Click--> Tasks-->Import or Export
+c) SSDT--> SSIS-->Packages-->Right click-->Import Export Wizard
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Practice the below two examples:
+
+a) Transfer set of tables from one database to another database in SQL Serevr.
+
+b) Move Flatfile data into Target table
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Question:
+
+I have 10 tables in Oracle, I want to load all at a time into SQL Server ( need tables created and data loaded).
+How do you do that?
+
+Import Export Wizard is the simplest solution.
+
+In SSIS, it requires multiple Data flow tasks
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+How the import export wizard works?
+
+It creates an SSIS package with Dataflow and other tasks, process it.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario: You have more volumes of data in a file and want to load to a table (existed)
+
+There are two ways
+a)	Bulk Insert Task
+b)	Data Flow Task (Oledb Destination: Use fast load option)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario: You need to move set of tables from one database to another.
+                 Set of worksheets in an Excel load to tables.
+
+Import Export Wizard
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scenario: You have normal or more volumes of data, want to perform some intermediate 
+                 Operations.
+
+Data Flow Task
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+How do you define a source and how many sources are there in SSIS?
+
+Source is nothing but a data feed / data input / data provider / data producer.
+
+In SSIS, we have 8 sources.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+How do you define a target and how many targets are there in SSIS?
+
+Target is nothing but a data consumer / data output / destination.
+
+In SSIS, we have 13 destinatons.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+How many destinations available to load to SQL Server table?
+
+Many destinations
+
+a) OLEDB Destination  [recommended]
+b) ADO.net Destination [recommended]
+c) SQL Server Destination [recommended for faster loading]
+d) SQL Server Compact Destination [recently added]
+e) Recordset Destination
+etc.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Implement the below direct load examples from the material [PDF1]
+
+a) Flat file to flat file
+
+b) Excel to Excel load
+
+	Note: You will find two general issues while working on it
+
+		a) Version not suitable for SSDT visual studio version
+
+	
+		b) Bit not suitable, 32 bit / 64 bit
+	
+		 Example Issues: 64-bit driver is not installed, run the package in 32-bit mode. 
+
+		Solution: Project-->right click--> properties--> configuration settings--< debugging--> 64 But runtime: False 
+
+		Example Issues: 32-bit driver is not installed, run the package in 64-bit mode. 
+
+		Solution: Project-->right click--> properties--> configuration settings--< debugging--> 64 But runtime: True 
+
+		c) If excel opened also, it will not allow you to operate.
+
+
+c) OLEDB Source to OLEDB Destination load
+
+d) Oledb Source to Raw Destination
+
+e) XML file to target
+
+f) RAW file to flat file loading
+
+g) Working on fixed length files
+
+h) Moving csv files to Target
+
+=====================================================================================
+Working on Flat FIle Source Properties [Refer to the PDF]
+ =====================================================================================
+a) Connection manager creation [you know about this]
+b)Retain NULL values as NULLs [If we don't check this, system will treat NULL as Zero (numeric) or Space (String)
+c) Preview: Sample Data
+d) ErrorOutput Options
+
+	When a field (column) has error or truncation, what you want to do?
+
+	a)Fail component: Because of error / truncation failing it
+
+	b) Ignore Failure: The error / truncation ignored
+
+	c) Redirect Row: Redirecting the error / truncation [to another target]
+
+	Examples:
+
+	ID is numeric column, if you get a string value in the column, then it is error
+	SAL(7,2) value, if you get (8,2) value, then it is truncation
+
+e) Advanced Editor:
+
+	After establishing connection manager, if you want to modify any settings, this is required
+
+	Source-->right click-->Show Advanced Editor
+
+f) IsFastParse: True
+
+	This will do faster compilation
+
+Scenario: From source load correct records to target and wrong data into another target [Material]
+
+
+
+=====================================================================================
+Working on OLDB Source Properties
+ =====================================================================================
+It has four options:
+
+a)Table / view: If we know the table or view name [Static]
+
+b)Table / view variable: If it is changing at run time [Dynamic table / view]
+
+c)SQL Command: Takes SQL command 
+
+                               [Select query tables/views, EXEC command of procedures …][Static]
+	  
+	Real time: 
+
+	a) To get required rows and columns from single or multiple tables [Joins supported] 
+	c)Calling a procedure to get data as input
+
+d) SQL Command from variable: If the command changing at runtime [Dynamic]
+
+
+
+=====================================================================================
+Working on OLEDB Destination Properties
+ =====================================================================================
+
+It has five options:
+
+a)Table / view: If we know the table or view name [Static]. Normal Load.
+
+b)Table / view variable: If it is changing at run time [Dynamic table / view]
+
+c)Table / view-Fastload: If we know the table or view name [Static]. Faster loading and has options during load also.
+
+d)Table / view variable-Fastload: If it is changing at run time [Dynamic table / view]. Faster loading and has options during load also.
+
+c)SQL Command: Takes SQL command to load data
+
+                               
+
+=====================================================================================
+Faqs
+ =====================================================================================
+
+SCENARIOS ON FASTLOAD OPTION:
+
+1.Load 1cr records from a file to table quickly
+
+	BULK INSERT TASK / IN DATA FLOW OLEDB DESTINATION FAST LOAD
+--------------------------------------------------------------------------------------------------------
+2.Can you provide options to implement better loading of 50 lakh records
+
+Take oledb destination do the below
+
+a)Oledb destination : use fast load option
+
+b)Take the below additional properties
+
+RowsPerbatch: 5000
+
+MaxInsertCommitSize: 50000
+
+                                                            More Data Load from file
+                  Bulk Insert Task	 Data Flow Task [Fast Load Option]
+
+
+
+
+Note:     If no logic required, prefer Bulk Insert. If there is a logic, then prefer Fast Load.
+--------------------------------------------------------------------------------------------------------
+On what basis we provide MaxInsertCommitSize?
+
+	a)Server Configuration [CPU and Memory]
+	b)Record Size
+	c)Optional, but a load test run of the specified number of records
+--------------------------------------------------------------------------------------------------------
+How do we load not loaded records into target table?
+
+a)A Left join B  + where right hand side cols is null-------- Target [B]
+
+b)A minus B - target [B]
+
+--------------------------------------------------------------------------------------------------------
+There is a table having clustered index, what kind of load option is suitable?
+
+FASTLOAD OPTION
+
+
+For better loading of data into target what we need to ensure?
+
+a)Ensure no or less indices available on the tables
+
+b) Ensure no triggers and many constraints available on the table
+
+c)If there is a clustered index which improves performance than non-clustered index.	
+
+
+--------------------------------------------------------------------------------------------------------
+
