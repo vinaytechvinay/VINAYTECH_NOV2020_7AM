@@ -151,10 +151,11 @@ Pivot Transform:
 		Reducing number of records and performing aggregate operations
 
 		To work with this transform, three properties need to identify
+
 		a) Set key [ no position change column]
 		b) Pivot column [ whose values change from row to column]
 		c) Pivot value [values pivoted]
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Unpivot Transform:
 		UPivot transform perform  
@@ -166,10 +167,10 @@ Unpivot Transform:
 		
 		a) Mainframe or cobol files handling [because they are in normalized format, to maintain historical format unpivot 			required]
 		b) To maintain individual rows with components / changes
-	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 Export Column Transform:
 
-		Export column values to a folder
+		Export column values [Data Type of column: Image, Binary] to a folder
 
 		Ex:
 
@@ -177,7 +178,7 @@ Export Column Transform:
 		
 		Archived text / pdf / word files exporting to a folder
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 Import Column Transform:
 
 		Import folder [files / images etc...] of content into a table column [image / binary]
@@ -194,18 +195,19 @@ Import Column Transform:
 Multi Souce Transforms  [Union ALL, Merge, Merge Join, Lookup, Fuzzy Lookup etc.] : PDF 5 
 =======================================================================================
 
-	Set theory implementation in SSIS:  a) Union ALL  b)Merge
-
+Set theory implementation in SSIS:  a) Union ALL  b)Merge
+ ======================================
+              
 Note: Input structure should match [number of columns and order of data types should match,it will not bother about column names]
 
 Union ALL:
 
-	a) Take multiple input sources [ same structure]
+	a) Take multiple (2 or more ) input sources [ same structure]
 	b) Output data appended [ one source appended to another source]
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 Merge:
-	Take two sorted inputs and provide sorted output.
+	Take two sorted inputs [same structure] and provide sorted output.
 	
 	Practical:
 
@@ -216,7 +218,7 @@ Merge:
 	Scenario 2: Inputs Sorted
 
 	Inputs--> (mention two features to tell sources sorted and on a column)--> Merge-->Output
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 What is sort key position?
 	
 	Inticate the sorting level.
@@ -242,7 +244,7 @@ Merge Join:
 		Note: There is no direct right join, if we swap and perform left join, then it is right join operation.
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 OLEDB Command Transform:
 
 		It performs SQL operation for each input record.
@@ -264,15 +266,18 @@ New Record Loading + Old record updating
 ==============================
 Incremental Loading --> Slowly Changing Dimension Loading--> No Hist Loasing [ Type 1]
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 =============================
 LOOKUP TRANSFORM
 =============================
+
 What is the operation of lookup?
 
 Lookup performs exact match based on condition and returns required columns.
+
 -------------------------------------------------------------------------------------------------------
 Where do we use in Real time?
+
 a)	Record availability
 b)	Duplicates finding
 c)	Incremental loading
@@ -288,6 +293,7 @@ a)Fail component --Fails the component and stops the package execution
 b)Ignore failure—Ignores failure and loads the record [appears like left join]
 c)No match output—consider and move into no match destination
 d)Error output—consider and move into error destination
+
 -------------------------------------------------------------------------------------------------------
 If multiple matches found, what will it return?
 
